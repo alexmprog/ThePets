@@ -19,7 +19,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "app"
-            binaryOptions["bundleId"] = "com.alexmprog.thepets"
+            binaryOptions["bundleId"] = "com.alexmprog.thepets.app"
         }
     }
 

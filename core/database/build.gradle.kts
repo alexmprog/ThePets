@@ -1,7 +1,13 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.sqlDelight)
+    alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 kotlin {
@@ -12,24 +18,16 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.dispatchers)
             implementation(projects.common.logger)
-            implementation(libs.sqldelight.runtime)
-            implementation(libs.sqldelight.coroutines)
+            implementation(projects.common.dispatchers)
             implementation(libs.koin.core)
-        }
-        iosMain.dependencies {
-            implementation(libs.sqldelight.native)
+            implementation(libs.androidx.room.runtime)
+            implementation(libs.sqlite.bundled)
+            implementation(libs.sqlite)
         }
         androidMain.dependencies {
-            implementation(libs.sqldelight.android)
+            implementation(libs.koin.android)
         }
-    }
-}
-
-sqldelight {
-    databases.create("PetsDatabase") {
-        packageName.set("com.alexmprog.thepets.core.database")
     }
 }
 
@@ -42,3 +40,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 }
+
+dependencies {
+    add("kspAndroid", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+}
+

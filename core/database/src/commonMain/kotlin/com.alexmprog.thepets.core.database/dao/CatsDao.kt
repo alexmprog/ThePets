@@ -4,18 +4,18 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.alexmprog.thepets.core.database.model.DogEntity
+import com.alexmprog.thepets.core.database.model.CatEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface DogsDao {
+interface CatsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(entity: DogEntity)
+    suspend fun insert(entity: CatEntity)
 
-    @Query("DELETE FROM DogEntity WHERE url = :url")
+    @Query("DELETE FROM CatEntity WHERE url = :url")
     suspend fun delete(url: String)
 
-    @Query("SELECT * FROM DogEntity")
-    fun observe(): Flow<List<DogEntity>>
+    @Query("SELECT * FROM CatEntity")
+    fun observe(): Flow<List<CatEntity>>
 }
