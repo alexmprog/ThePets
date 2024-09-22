@@ -44,6 +44,11 @@ internal class CatsScreenViewModel(
     fun save(cat: Cat) {
         screenModelScope.launch {
             saveCatUseCase(cat)
+            _state.update {
+                val items = it.cats.toMutableList()
+                items.remove(cat)
+                it.copy(cats = items)
+            }
         }
     }
 }

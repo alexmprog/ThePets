@@ -1,5 +1,6 @@
 package com.alexmprog.thepets.feature.cats.impl.presentation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,7 +46,7 @@ internal class CatsScreen : Screen {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 internal fun CatsScreenContent(
     state: CatsScreenState,
@@ -89,6 +90,7 @@ internal fun CatsScreenContent(
                     OutlinedCard(
                         modifier = Modifier
                             .wrapContentSize()
+                            .animateItemPlacement()
                             .clickable { onCatClick(it) }
                     ) {
                         AsyncImage(

@@ -44,6 +44,11 @@ internal class DogsScreenViewModel(
     fun save(dog: Dog) {
         screenModelScope.launch {
             saveDogUseCase(dog)
+            _state.update {
+                val items = it.dogs.toMutableList()
+                items.remove(dog)
+                it.copy(dogs = items)
+            }
         }
     }
 }

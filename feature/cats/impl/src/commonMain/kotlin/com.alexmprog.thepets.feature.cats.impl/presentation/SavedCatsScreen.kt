@@ -1,14 +1,15 @@
 package com.alexmprog.thepets.feature.cats.impl.presentation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,7 +41,7 @@ internal class SavedCatsScreen : Screen {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 internal fun SavedCatsScreenContent(
     state: SavedCatsScreenState,
@@ -60,20 +61,20 @@ internal fun SavedCatsScreenContent(
     }) { innerPaddings ->
         BoxWithConstraints(modifier = Modifier.padding(innerPaddings).fillMaxSize()) {
             val width = maxWidth
-            val height = maxHeight
             val count = 3
-            LazyVerticalGrid(columns = GridCells.Fixed(count)) {
+            LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(count)) {
                 items(state.cats, key = { it.id }) {
                     OutlinedCard(
                         modifier = Modifier
                             .wrapContentSize()
+                            .animateItemPlacement()
                             .clickable { onCatClick(it) }
                     ) {
                         AsyncImage(
                             model = it.url,
                             contentDescription = it.url,
                             contentScale = ContentScale.Crop,
-                            modifier = Modifier.size(width / count, height / count)
+                            modifier = Modifier.width(width / count)
                         )
                     }
                 }
