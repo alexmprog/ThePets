@@ -8,8 +8,4 @@ internal class DogsNavigationImpl : DogsNavigation {
 
     override fun dogsScreen(): Screen = DogsScreen()
 
-    override fun savedDogsScreen(): Screen {
-        TODO("Not yet implemented")
-    }
-
 }

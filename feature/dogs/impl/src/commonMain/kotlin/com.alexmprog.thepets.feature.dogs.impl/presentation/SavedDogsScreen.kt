@@ -11,8 +11,6 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -30,53 +28,31 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
-import com.alexmprog.thepets.common.logger.Logger
 import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
 
-internal class DogsScreen : Screen {
+internal class SavedDogsScreen : Screen {
 
     @Composable
     override fun Content() {
-        val viewModel = koinScreenModel<DogsScreenViewModel>()
+        val viewModel = koinScreenModel<SavedDogsViewModel>()
         val state by viewModel.state.collectAsState()
-        DogsScreenContent(
-            state,
-            onRefreshClick = { viewModel.refresh() },
-            onDogClick = { viewModel.save(it) })
+        SavedDogsScreenContent(state, onDogClick = { viewModel.delete(it) })
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DogsScreenContent(
-    state: DogsScreenState,
-    onRefreshClick: () -> Unit,
+internal fun SavedDogsScreenContent(
+    state: SavedDogsScreenState,
     onDogClick: (Dog) -> Unit
 ) {
-    Logger.log("DogsScreenContent", "state=$state")
     val navigator = LocalNavigator.currentOrThrow
     Scaffold(topBar = {
-        TopAppBar(title = { Text("Dogs") },
+        TopAppBar(title = { Text("Saved dags") },
             navigationIcon = {
                 IconButton(onClick = { navigator.pop() }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
-                        contentDescription = null
-                    )
-                }
-            },
-            actions = {
-                IconButton(onClick = { onRefreshClick() }) {
-                    Icon(
-                        imageVector = Icons.Default.Refresh,
-                        contentDescription = null
-                    )
-                }
-                IconButton(onClick = {
-                    navigator.push(SavedDogsScreen())
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.Favorite,
                         contentDescription = null
                     )
                 }

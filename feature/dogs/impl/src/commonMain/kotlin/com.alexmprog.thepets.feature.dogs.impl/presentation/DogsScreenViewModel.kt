@@ -2,9 +2,11 @@ package com.alexmprog.thepets.feature.dogs.impl.presentation
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import com.alexmprog.thepets.core.utils.onError
 import com.alexmprog.thepets.core.utils.onSuccess
 import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
 import com.alexmprog.thepets.feature.dogs.api.domain.usecase.GetDogsUseCase
+import com.alexmprog.thepets.feature.dogs.api.domain.usecase.SaveDogUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,18 +18,32 @@ internal data class DogsScreenState(
     val dogs: List<Dog> = emptyList()
 )
 
-internal class DogsScreenViewModel(private val getDogsUseCase: GetDogsUseCase) : ScreenModel {
+internal class DogsScreenViewModel(
+    private val getDogsUseCase: GetDogsUseCase,
+    private val saveDogUseCase: SaveDogUseCase
+) : ScreenModel {
 
     private val _state = MutableStateFlow(DogsScreenState())
     val state: StateFlow<DogsScreenState> = _state.asStateFlow()
 
     init {
+        refresh()
+    }
+
+    fun refresh() {
         screenModelScope.launch {
-            getDogsUseCase().collect {
-                it.onSuccess { dogs ->
+            getDogsUseCase(9)
+                .onSuccess { dogs ->
                     _state.update { it.copy(dogs = dogs) }
+                }.onError {
+
                 }
-            }
+        }
+    }
+
+    fun save(dog: Dog) {
+        screenModelScope.launch {
+            saveDogUseCase(dog)
         }
     }
 }

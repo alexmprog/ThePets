@@ -6,5 +6,12 @@ import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
 import kotlinx.coroutines.flow.Flow
 
 interface DogsRepository {
-    fun getDogs(): Flow<Resource<List<Dog>, Error>>
+
+    suspend fun getDogs(limit: Int): Resource<List<Dog>, Error>
+
+    suspend fun saveDog(dog: Dog)
+
+    suspend fun deleteDog(dog: Dog)
+
+    fun observerDogs(): Flow<List<Dog>>
 }

@@ -18,6 +18,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.common.dispatchers)
             implementation(projects.common.logger)
             implementation(projects.common.utils)
             implementation(projects.core.database)
