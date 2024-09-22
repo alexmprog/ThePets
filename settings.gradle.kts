@@ -1,17 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":common:dispatchers")
-
-
-include(":core:ui")
-
-
-include(":feature:dogs:impl")
-
-
-include(":feature:dogs:api")
-
-
 rootProject.name = "ThePets"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
@@ -43,7 +31,13 @@ dependencyResolutionManagement {
 }
 
 include(":app")
-include(":common:utils")
+include(":common:dispatchers")
 include(":common:logger")
+include(":common:utils")
 include(":core:database")
 include(":core:network")
+include(":core:ui")
+include(":feature:cats:impl")
+include(":feature:cats:api")
+include(":feature:dogs:impl")
+include(":feature:dogs:api")

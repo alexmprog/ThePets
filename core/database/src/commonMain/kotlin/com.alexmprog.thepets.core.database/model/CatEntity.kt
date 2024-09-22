@@ -5,5 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class CatEntity(
-    @PrimaryKey val url: String,
+    @PrimaryKey val id: String,
+    val url: String
 )

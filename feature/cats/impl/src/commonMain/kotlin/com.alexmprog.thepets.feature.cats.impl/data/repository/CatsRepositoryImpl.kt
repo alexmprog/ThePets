@@ -1,0 +1,43 @@
+package com.alexmprog.thepets.feature.cats.impl.data.repository
+
+import com.alexmprog.thepets.core.database.dao.CatsDao
+import com.alexmprog.thepets.core.database.model.CatEntity
+import com.alexmprog.thepets.core.utils.Error
+import com.alexmprog.thepets.core.utils.Resource
+import com.alexmprog.thepets.core.utils.map
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
+import com.alexmprog.thepets.feature.cats.api.domain.repository.CatsRepository
+import com.alexmprog.thepets.feature.cats.impl.data.network.CatDto
+import com.alexmprog.thepets.feature.cats.impl.data.network.CatsService
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
+
+internal class CatsRepositoryImpl(
+    private val catsService: CatsService,
+    private val catsDao: CatsDao,
+    private val coroutineDispatcher: CoroutineDispatcher
+) : CatsRepository {
+
+    override suspend fun getCats(limit: Int): Resource<List<Cat>, Error> =
+        withContext(coroutineDispatcher) {
+            catsService.getCats(limit).map { it.map { it.toModel() } }
+        }
+
+    override suspend fun saveCat(cat: Cat) {
+        catsDao.insert(cat.toEntity())
+    }
+
+    override suspend fun deleteCat(cat: Cat) {
+        catsDao.delete(cat.id)
+    }
+
+    override fun observerCats(): Flow<List<Cat>> = catsDao.observe().map { it.map { it.toModel() } }
+}
+
+internal fun CatDto.toModel(): Cat = Cat(id, url)
+
+internal fun CatEntity.toModel(): Cat = Cat(id, url)
+
+internal fun Cat.toEntity(): CatEntity = CatEntity(id, url)

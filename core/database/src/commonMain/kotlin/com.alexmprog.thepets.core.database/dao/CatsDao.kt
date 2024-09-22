@@ -13,8 +13,8 @@ interface CatsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: CatEntity)
 
-    @Query("DELETE FROM CatEntity WHERE url = :url")
-    suspend fun delete(url: String)
+    @Query("DELETE FROM CatEntity WHERE id = :id")
+    suspend fun delete(id: String)
 
     @Query("SELECT * FROM CatEntity")
     fun observe(): Flow<List<CatEntity>>

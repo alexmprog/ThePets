@@ -63,7 +63,7 @@ internal fun SavedDogsScreenContent(
             val height = maxHeight
             val count = 3
             LazyVerticalGrid(columns = GridCells.Fixed(count)) {
-                items(state.dogs) {
+                items(state.dogs, key = { it.id }) {
                     OutlinedCard(
                         modifier = Modifier
                             .wrapContentSize()

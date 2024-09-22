@@ -13,8 +13,8 @@ interface DogsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entity: DogEntity)
 
-    @Query("DELETE FROM DogEntity WHERE url = :url")
-    suspend fun delete(url: String)
+    @Query("DELETE FROM DogEntity WHERE id = :id")
+    suspend fun delete(id: String)
 
     @Query("SELECT * FROM DogEntity")
     fun observe(): Flow<List<DogEntity>>

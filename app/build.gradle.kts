@@ -29,6 +29,8 @@ kotlin {
             implementation(projects.common.logger)
             implementation(projects.core.network)
             implementation(projects.core.database)
+            implementation(projects.feature.cats.api)
+            implementation(projects.feature.cats.impl)
             implementation(projects.feature.dogs.api)
             implementation(projects.feature.dogs.impl)
             implementation(compose.runtime)

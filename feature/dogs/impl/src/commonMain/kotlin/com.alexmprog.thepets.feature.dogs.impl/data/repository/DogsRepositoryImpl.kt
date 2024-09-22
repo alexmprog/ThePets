@@ -30,14 +30,14 @@ internal class DogsRepositoryImpl(
     }
 
     override suspend fun deleteDog(dog: Dog) {
-        dogsDao.delete(dog.url)
+        dogsDao.delete(dog.id)
     }
 
     override fun observerDogs(): Flow<List<Dog>> = dogsDao.observe().map { it.map { it.toModel() } }
 }
 
-internal fun DogsResponse.toModel(): List<Dog> = message.map { Dog(it) }
+internal fun DogsResponse.toModel(): List<Dog> = message.map { Dog(it, it) }
 
-internal fun DogEntity.toModel(): Dog = Dog(url)
+internal fun DogEntity.toModel(): Dog = Dog(id, url)
 
-internal fun Dog.toEntity(): DogEntity = DogEntity(url)
+internal fun Dog.toEntity(): DogEntity = DogEntity(id, url)

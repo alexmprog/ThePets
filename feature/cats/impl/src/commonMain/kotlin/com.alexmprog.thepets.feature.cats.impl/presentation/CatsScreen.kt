@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.feature.dogs.impl.presentation
+package com.alexmprog.thepets.feature.cats.impl.presentation
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -30,33 +30,31 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
-import com.alexmprog.thepets.common.logger.Logger
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
 
-internal class DogsScreen : Screen {
+internal class CatsScreen : Screen {
 
     @Composable
     override fun Content() {
-        val viewModel = koinScreenModel<DogsScreenViewModel>()
+        val viewModel = koinScreenModel<CatsScreenViewModel>()
         val state by viewModel.state.collectAsState()
-        DogsScreenContent(
+        CatsScreenContent(
             state,
             onRefreshClick = { viewModel.refresh() },
-            onDogClick = { viewModel.save(it) })
+            onCatClick = { viewModel.save(it) })
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun DogsScreenContent(
-    state: DogsScreenState,
+internal fun CatsScreenContent(
+    state: CatsScreenState,
     onRefreshClick: () -> Unit,
-    onDogClick: (Dog) -> Unit
+    onCatClick: (Cat) -> Unit
 ) {
-    Logger.log("DogsScreenContent", "state=$state")
     val navigator = LocalNavigator.currentOrThrow
     Scaffold(topBar = {
-        TopAppBar(title = { Text("Dogs") },
+        TopAppBar(title = { Text("Cats") },
             navigationIcon = {
                 IconButton(onClick = { navigator.pop() }) {
                     Icon(
@@ -73,7 +71,7 @@ internal fun DogsScreenContent(
                     )
                 }
                 IconButton(onClick = {
-                    navigator.push(SavedDogsScreen())
+                    navigator.push(SavedCatsScreen())
                 }) {
                     Icon(
                         imageVector = Icons.Default.Favorite,
@@ -87,11 +85,11 @@ internal fun DogsScreenContent(
             val height = maxHeight
             val count = 3
             LazyVerticalGrid(columns = GridCells.Fixed(count)) {
-                items(state.dogs, key = { it.id }) {
+                items(state.cats, key = { it.id }) {
                     OutlinedCard(
                         modifier = Modifier
                             .wrapContentSize()
-                            .clickable { onDogClick(it) }
+                            .clickable { onCatClick(it) }
                     ) {
                         AsyncImage(
                             model = it.url,
