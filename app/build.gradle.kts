@@ -33,6 +33,8 @@ kotlin {
             implementation(projects.feature.cats.impl)
             implementation(projects.feature.dogs.api)
             implementation(projects.feature.dogs.impl)
+            implementation(projects.feature.home.api)
+            implementation(projects.feature.home.impl)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)

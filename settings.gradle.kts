@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":feature:home:impl")
+
+
+include(":feature:home:api")
+
+
 rootProject.name = "ThePets"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

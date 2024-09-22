@@ -20,20 +20,21 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val catsFeatureModule = module {
-    single<CatsRepository> {
-        CatsRepositoryImpl(
-            get(),
-            get(),
-            get<CoroutineDispatcher>(named(CommonIoDispatcher))
-        )
+val catsFeatureModule
+    get() = module {
+        single<CatsRepository> {
+            CatsRepositoryImpl(
+                get(),
+                get(),
+                get<CoroutineDispatcher>(named(CommonIoDispatcher))
+            )
+        }
+        singleOf(::CatsFeatureImpl) bind CatsFeature::class
+        factoryOf(::CatsServiceImpl) bind CatsService::class
+        factoryOf(::GetCatsUseCase)
+        factoryOf(::ObserveCatsUseCase)
+        factoryOf(::SaveCatUseCase)
+        factoryOf(::DeleteCatUseCase)
+        factoryOf(::CatsScreenViewModel)
+        factoryOf(::SavedCatsScreenViewModel)
     }
-    singleOf(::CatsFeatureImpl) bind CatsFeature::class
-    factoryOf(::CatsServiceImpl) bind CatsService::class
-    factoryOf(::GetCatsUseCase)
-    factoryOf(::ObserveCatsUseCase)
-    factoryOf(::SaveCatUseCase)
-    factoryOf(::DeleteCatUseCase)
-    factoryOf(::CatsScreenViewModel)
-    factoryOf(::SavedCatsScreenViewModel)
-}
