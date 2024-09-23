@@ -46,6 +46,9 @@ junitVersion = "4.13.2"
 androidxRoom = "2.7.0-alpha02"
 sqlite = "2.5.0-alpha02"
 
+# ModuleGraph
+graph = "0.10.1"
+
 [libraries]
 
 # Kotlin
@@ -123,6 +126,8 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+# ModuleGraph
+graph = {id = "dev.iurysouza.modulegraph" , version.ref = "graph" }
 
 # Android
 androidApplication = { id = "com.android.application", version.ref = "agp" }
