@@ -26,17 +26,14 @@ internal class DogsScreenViewModel(
     private val _state = MutableStateFlow(DogsScreenState())
     val state: StateFlow<DogsScreenState> = _state.asStateFlow()
 
-    init {
-        refresh()
-    }
-
     fun refresh() {
         screenModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
             getDogsUseCase(9)
                 .onSuccess { dogs ->
-                    _state.update { it.copy(dogs = dogs) }
+                    _state.update { DogsScreenState(dogs = dogs) }
                 }.onError {
-
+                    _state.update { DogsScreenState() }
                 }
         }
     }

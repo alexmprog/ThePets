@@ -26,17 +26,14 @@ internal class CatsScreenViewModel(
     private val _state = MutableStateFlow(CatsScreenState())
     val state: StateFlow<CatsScreenState> = _state.asStateFlow()
 
-    init {
-        refresh()
-    }
-
     fun refresh() {
         screenModelScope.launch {
+            _state.update { it.copy(isLoading = true) }
             getCatsUseCase(9)
                 .onSuccess { cats ->
-                    _state.update { it.copy(cats = cats) }
+                    _state.update { CatsScreenState(cats = cats)}
                 }.onError {
-
+                    _state.update { CatsScreenState() }
                 }
         }
     }

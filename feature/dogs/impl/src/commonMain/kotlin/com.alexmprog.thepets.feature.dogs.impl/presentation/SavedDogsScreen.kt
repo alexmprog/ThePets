@@ -4,8 +4,8 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
@@ -29,6 +29,7 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
+import com.alexmprog.thepets.core.ui.components.LoadingView
 import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
 import com.alexmprog.thepets.feature.dogs.impl.Res
 import com.alexmprog.thepets.feature.dogs.impl.saved_dogs
@@ -63,22 +64,23 @@ internal fun SavedDogsScreenContent(
             })
     }) { innerPaddings ->
         BoxWithConstraints(modifier = Modifier.padding(innerPaddings).fillMaxSize()) {
-            val width = maxWidth
-            val count = 3
-            LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(count)) {
-                items(state.dogs, key = { it.id }) {
-                    OutlinedCard(
-                        modifier = Modifier
-                            .wrapContentSize()
-                            .animateItemPlacement()
-                            .clickable { onDogClick(it) }
-                    ) {
-                        AsyncImage(
-                            model = it.url,
-                            contentDescription = it.url,
-                            contentScale = ContentScale.Crop,
-                            modifier = Modifier.width(width / count)
-                        )
+            if (state.isLoading) LoadingView()
+            else {
+                LazyVerticalStaggeredGrid(columns = StaggeredGridCells.Fixed(3)) {
+                    items(state.dogs, key = { it.id }) {
+                        OutlinedCard(
+                            modifier = Modifier
+                                .wrapContentSize()
+                                .animateItemPlacement()
+                                .clickable { onDogClick(it) }
+                        ) {
+                            AsyncImage(
+                                model = it.url,
+                                contentDescription = it.url,
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier.fillMaxWidth()
+                            )
+                        }
                     }
                 }
             }

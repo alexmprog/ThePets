@@ -19,6 +19,7 @@ kotlin {
             implementation(projects.common.utils)
             implementation(projects.core.database)
             implementation(projects.core.network)
+            implementation(projects.core.ui)
             implementation(projects.feature.cats.api)
 
             implementation(libs.kotlinx.coroutines.core)
