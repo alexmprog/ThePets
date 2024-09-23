@@ -1,5 +1,7 @@
 # ThePets
 
+![GitHub Logo](/screenshots/android_app_flow.gif)
+
 ## About
 Compose Multiplatform application simply loads data from API and stores it in persistence storage (i.e. SQLite Database).
 * User real  [Cats](https://thecatapi.com) and [Dogs](https://dog.ceo/dog-api) api.<br>
@@ -112,4 +114,4 @@ class :feature:dogs:impl kotlin-multiplatform
 
 ## Architecture
 This repository uses recommended Android [App architecture](https://developer.android.com/topic/architecture).
-![Image of MVVM](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-ui-udf.png)
+![Image of Clean Architecture](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
