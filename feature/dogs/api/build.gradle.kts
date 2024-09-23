@@ -16,6 +16,7 @@ kotlin {
             implementation(projects.common.utils)
             implementation(libs.kotlinx.coroutines.core)
             implementation(compose.runtime)
+            implementation(compose.foundation)
             implementation(libs.voyager.core)
         }
     }
