@@ -31,8 +31,10 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
-import com.alexmprog.thepets.common.logger.Logger
 import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import org.jetbrains.compose.resources.stringResource
+import com.alexmprog.thepets.feature.dogs.impl.Res
+import com.alexmprog.thepets.feature.dogs.impl.dogs
 
 internal class DogsScreen : Screen {
 
@@ -54,10 +56,9 @@ internal fun DogsScreenContent(
     onRefreshClick: () -> Unit,
     onDogClick: (Dog) -> Unit
 ) {
-    Logger.log("DogsScreenContent", "state=$state")
     val navigator = LocalNavigator.currentOrThrow
     Scaffold(topBar = {
-        TopAppBar(title = { Text("Dogs") },
+        TopAppBar(title = { Text(stringResource(Res.string.dogs)) },
             navigationIcon = {
                 IconButton(onClick = { navigator.pop() }) {
                     Icon(

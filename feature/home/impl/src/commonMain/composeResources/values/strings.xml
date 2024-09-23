@@ -1,0 +1,4 @@
+<resources>
+    <string name="show_cats">Show cats</string>
+    <string name="show_dogs">Show dogs</string>
+</resources>

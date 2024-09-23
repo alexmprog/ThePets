@@ -22,7 +22,7 @@ internal class CatsRepositoryImpl(
 
     override suspend fun getCats(limit: Int): Resource<List<Cat>, Error> =
         withContext(coroutineDispatcher) {
-            catsService.getCats(limit).map { it.map { it.toModel() } }
+            catsService.getCats(limit).map { it.take(limit).map { it.toModel() } }
         }
 
     override suspend fun saveCat(cat: Cat) {
@@ -33,7 +33,7 @@ internal class CatsRepositoryImpl(
         catsDao.delete(cat.id)
     }
 
-    override fun observerCats(): Flow<List<Cat>> = catsDao.observe().map { it.map { it.toModel() } }
+    override fun observeCats(): Flow<List<Cat>> = catsDao.observe().map { it.map { it.toModel() } }
 }
 
 internal fun CatDto.toModel(): Cat = Cat(id, url)

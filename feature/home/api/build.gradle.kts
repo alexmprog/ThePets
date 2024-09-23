@@ -5,10 +5,6 @@ plugins {
     alias(libs.plugins.compose.compiler)
 }
 
-compose.resources {
-    generateResClass = never
-}
-
 kotlin {
     androidTarget()
     iosX64()
@@ -19,11 +15,7 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.utils)
             implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(libs.voyager.koin)
-            implementation(libs.voyager.screenModel)
+            implementation(libs.voyager.core)
         }
     }
 }

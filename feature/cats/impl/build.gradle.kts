@@ -6,10 +6,6 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
 }
 
-compose.resources {
-    generateResClass = never
-}
-
 kotlin {
     androidTarget()
     iosX64()
@@ -44,6 +40,12 @@ kotlin {
             implementation(libs.coil.network)
         }
     }
+}
+
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.alexmprog.thepets.feature.cats.impl"
+    generateResClass = auto
 }
 
 android {

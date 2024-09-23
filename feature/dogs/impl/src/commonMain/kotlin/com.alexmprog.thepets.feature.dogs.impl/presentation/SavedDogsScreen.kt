@@ -30,6 +30,9 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
 import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import com.alexmprog.thepets.feature.dogs.impl.Res
+import com.alexmprog.thepets.feature.dogs.impl.saved_dogs
+import org.jetbrains.compose.resources.stringResource
 
 internal class SavedDogsScreen : Screen {
 
@@ -49,7 +52,7 @@ internal fun SavedDogsScreenContent(
 ) {
     val navigator = LocalNavigator.currentOrThrow
     Scaffold(topBar = {
-        TopAppBar(title = { Text("Saved dogs") },
+        TopAppBar(title = { Text(stringResource(Res.string.saved_dogs)) },
             navigationIcon = {
                 IconButton(onClick = { navigator.pop() }) {
                     Icon(

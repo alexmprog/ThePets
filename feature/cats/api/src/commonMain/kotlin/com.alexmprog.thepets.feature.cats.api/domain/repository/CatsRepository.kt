@@ -13,5 +13,5 @@ interface CatsRepository {
 
     suspend fun deleteCat(cat: Cat)
 
-    fun observerCats(): Flow<List<Cat>>
+    fun observeCats(): Flow<List<Cat>>
 }

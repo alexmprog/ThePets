@@ -1,0 +1,4 @@
+<resources>
+    <string name="cats">Cats</string>
+    <string name="saved_cats">Saved cats</string>
+</resources>
