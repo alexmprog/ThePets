@@ -1,8 +1,8 @@
-package com.alexmprog.thepets.feature.dogs.impl.data.network
+package com.alexmprog.thepets.data.dogs.network
 
 import com.alexmprog.thepets.core.utils.Error
 import com.alexmprog.thepets.core.utils.Resource
-import com.alexprog.thepets.core.network.fetchUrl
+import com.alexmprog.thepets.core.network.fetchUrl
 import io.ktor.client.HttpClient
 
 internal interface DogsService {

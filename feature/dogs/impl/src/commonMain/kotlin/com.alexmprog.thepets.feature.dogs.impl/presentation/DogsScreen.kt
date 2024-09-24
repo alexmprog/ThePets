@@ -34,7 +34,7 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
 import com.alexmprog.thepets.core.ui.components.LoadingView
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import com.alexmprog.thepets.domain.dogs.model.Dog
 import org.jetbrains.compose.resources.stringResource
 import com.alexmprog.thepets.feature.dogs.impl.Res
 import com.alexmprog.thepets.feature.dogs.impl.dogs

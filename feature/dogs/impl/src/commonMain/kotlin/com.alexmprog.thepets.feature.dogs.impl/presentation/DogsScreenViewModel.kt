@@ -4,9 +4,9 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.alexmprog.thepets.core.utils.onError
 import com.alexmprog.thepets.core.utils.onSuccess
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
-import com.alexmprog.thepets.feature.dogs.api.domain.usecase.GetDogsUseCase
-import com.alexmprog.thepets.feature.dogs.api.domain.usecase.SaveDogUseCase
+import com.alexmprog.thepets.domain.dogs.model.Dog
+import com.alexmprog.thepets.domain.dogs.usecase.GetDogsUseCase
+import com.alexmprog.thepets.domain.dogs.usecase.SaveDogUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

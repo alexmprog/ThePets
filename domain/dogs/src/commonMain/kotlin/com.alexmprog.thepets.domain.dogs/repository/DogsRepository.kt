@@ -1,8 +1,8 @@
-package com.alexmprog.thepets.feature.dogs.api.domain.repository
+package com.alexmprog.thepets.domain.dogs.repository
 
 import com.alexmprog.thepets.core.utils.Error
 import com.alexmprog.thepets.core.utils.Resource
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import com.alexmprog.thepets.domain.dogs.model.Dog
 import kotlinx.coroutines.flow.Flow
 
 interface DogsRepository {

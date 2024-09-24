@@ -1,9 +1,9 @@
-package com.alexmprog.thepets.feature.dogs.api.domain.usecase
+package com.alexmprog.thepets.domain.dogs.usecase
 
 import com.alexmprog.thepets.core.utils.Error
 import com.alexmprog.thepets.core.utils.Resource
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
-import com.alexmprog.thepets.feature.dogs.api.domain.repository.DogsRepository
+import com.alexmprog.thepets.domain.dogs.model.Dog
+import com.alexmprog.thepets.domain.dogs.repository.DogsRepository
 
 class GetDogsUseCase(private val dogsRepository: DogsRepository) {
 

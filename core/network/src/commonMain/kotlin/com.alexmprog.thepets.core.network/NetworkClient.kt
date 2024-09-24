@@ -1,4 +1,4 @@
-package com.alexprog.thepets.core.network
+package com.alexmprog.thepets.core.network
 
 import com.alexmprog.thepets.common.logger.Logger
 import com.alexmprog.thepets.core.utils.Error

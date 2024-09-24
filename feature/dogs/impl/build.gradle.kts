@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -14,16 +13,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.dispatchers)
-            implementation(projects.common.logger)
             implementation(projects.common.utils)
-            implementation(projects.core.database)
-            implementation(projects.core.network)
             implementation(projects.core.ui)
+            implementation(projects.domain.dogs)
             implementation(projects.feature.dogs.api)
 
             implementation(libs.kotlinx.coroutines.core)
-            implementation(libs.kotlinx.serialization.json)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)

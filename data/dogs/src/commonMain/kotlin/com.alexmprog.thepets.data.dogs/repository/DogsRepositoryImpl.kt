@@ -1,14 +1,14 @@
-package com.alexmprog.thepets.feature.dogs.impl.data.repository
+package com.alexmprog.thepets.data.dogs.repository
 
 import com.alexmprog.thepets.core.database.dao.DogsDao
 import com.alexmprog.thepets.core.database.model.DogEntity
 import com.alexmprog.thepets.core.utils.Error
 import com.alexmprog.thepets.core.utils.Resource
 import com.alexmprog.thepets.core.utils.map
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
-import com.alexmprog.thepets.feature.dogs.api.domain.repository.DogsRepository
-import com.alexmprog.thepets.feature.dogs.impl.data.network.DogsResponse
-import com.alexmprog.thepets.feature.dogs.impl.data.network.DogsService
+import com.alexmprog.thepets.data.dogs.network.DogsResponse
+import com.alexmprog.thepets.data.dogs.network.DogsService
+import com.alexmprog.thepets.domain.dogs.model.Dog
+import com.alexmprog.thepets.domain.dogs.repository.DogsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

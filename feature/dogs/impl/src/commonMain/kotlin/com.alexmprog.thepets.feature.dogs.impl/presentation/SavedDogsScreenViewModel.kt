@@ -2,9 +2,9 @@ package com.alexmprog.thepets.feature.dogs.impl.presentation
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
-import com.alexmprog.thepets.feature.dogs.api.domain.usecase.DeleteDogUseCase
-import com.alexmprog.thepets.feature.dogs.api.domain.usecase.ObserveDogsUseCase
+import com.alexmprog.thepets.domain.dogs.model.Dog
+import com.alexmprog.thepets.domain.dogs.usecase.DeleteDogUseCase
+import com.alexmprog.thepets.domain.dogs.usecase.ObserveDogsUseCase
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
