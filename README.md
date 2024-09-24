@@ -32,14 +32,22 @@ Compose Multiplatform application simply loads data from API and stores it in pe
 
 graph TB
   subgraph :common
-    :common:utils["utils"]
     :common:logger["logger"]
     :common:dispatchers["dispatchers"]
+    :common:utils["utils"]
   end
   subgraph :core
     :core:database["database"]
     :core:network["network"]
     :core:ui["ui"]
+  end
+  subgraph :data
+    :data:cats["cats"]
+    :data:dogs["dogs"]
+  end
+  subgraph :domain
+    :domain:cats["cats"]
+    :domain:dogs["dogs"]
   end
   subgraph :feature:cats
     :feature:cats:api["api"]
@@ -53,7 +61,6 @@ graph TB
     :feature:home:impl["impl"]
     :feature:home:api["api"]
   end
-  :feature:dogs:api --> :common:utils
   :core:database --> :common:logger
   :core:database --> :common:dispatchers
   :feature:home:impl --> :common:dispatchers
@@ -64,12 +71,20 @@ graph TB
   :feature:home:impl --> :feature:cats:api
   :feature:home:impl --> :feature:dogs:api
   :feature:home:impl --> :feature:home:api
-  :feature:cats:api --> :common:utils
+  :data:cats --> :common:dispatchers
+  :data:cats --> :common:utils
+  :data:cats --> :core:database
+  :data:cats --> :core:network
+  :data:cats --> :domain:cats
   :app --> :common:dispatchers
   :app --> :common:logger
   :app --> :core:network
   :app --> :core:database
   :app --> :core:ui
+  :app --> :data:cats
+  :app --> :data:dogs
+  :app --> :domain:cats
+  :app --> :domain:dogs
   :app --> :feature:cats:api
   :app --> :feature:cats:impl
   :app --> :feature:dogs:api
@@ -79,39 +94,43 @@ graph TB
   :feature:home:api --> :common:utils
   :core:network --> :common:logger
   :core:network --> :common:utils
-  :feature:dogs:impl --> :common:dispatchers
-  :feature:dogs:impl --> :common:logger
+  :data:dogs --> :common:dispatchers
+  :data:dogs --> :common:utils
+  :data:dogs --> :core:database
+  :data:dogs --> :core:network
+  :data:dogs --> :domain:dogs
+  :domain:cats --> :common:utils
   :feature:dogs:impl --> :common:utils
-  :feature:dogs:impl --> :core:database
-  :feature:dogs:impl --> :core:network
   :feature:dogs:impl --> :core:ui
+  :feature:dogs:impl --> :domain:dogs
   :feature:dogs:impl --> :feature:dogs:api
-  :feature:cats:impl --> :common:dispatchers
-  :feature:cats:impl --> :common:logger
+  :domain:dogs --> :common:utils
   :feature:cats:impl --> :common:utils
-  :feature:cats:impl --> :core:database
-  :feature:cats:impl --> :core:network
   :feature:cats:impl --> :core:ui
+  :feature:cats:impl --> :domain:cats
   :feature:cats:impl --> :feature:cats:api
 
 classDef kotlin-multiplatform fill:#C792EA,stroke:#fff,stroke-width:2px,color:#fff;
 classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
-class :feature:dogs:api kotlin-multiplatform
-class :common:utils kotlin-multiplatform
 class :core:database kotlin-multiplatform
 class :common:logger kotlin-multiplatform
 class :common:dispatchers kotlin-multiplatform
 class :feature:home:impl kotlin-multiplatform
+class :common:utils kotlin-multiplatform
 class :core:network kotlin-multiplatform
 class :feature:cats:api kotlin-multiplatform
+class :feature:dogs:api kotlin-multiplatform
 class :feature:home:api kotlin-multiplatform
+class :data:cats kotlin-multiplatform
+class :domain:cats kotlin-multiplatform
 class :app android-application
 class :core:ui kotlin-multiplatform
+class :data:dogs kotlin-multiplatform
+class :domain:dogs kotlin-multiplatform
 class :feature:cats:impl kotlin-multiplatform
 class :feature:dogs:impl kotlin-multiplatform
 
 ```
-
 ## Architecture
 This repository uses recommended Android [App architecture](https://developer.android.com/topic/architecture).
 ![Image of Clean Architecture](https://developer.android.com/static/topic/libraries/architecture/images/mad-arch-overview.png)
