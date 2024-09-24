@@ -4,9 +4,9 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.alexmprog.thepets.core.utils.onError
 import com.alexmprog.thepets.core.utils.onSuccess
-import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
-import com.alexmprog.thepets.feature.cats.api.domain.usecase.GetCatsUseCase
-import com.alexmprog.thepets.feature.cats.api.domain.usecase.SaveCatUseCase
+import com.alexmprog.thepets.domain.cats.model.Cat
+import com.alexmprog.thepets.domain.cats.usecase.GetCatsUseCase
+import com.alexmprog.thepets.domain.cats.usecase.SaveCatUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

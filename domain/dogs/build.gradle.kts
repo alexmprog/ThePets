@@ -15,7 +15,7 @@ kotlin {
             implementation(projects.common.logger)
             implementation(projects.common.utils)
             implementation(libs.koin.core)
-            api(libs.ktor.client.core)
+            implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
             implementation(libs.ktor.client.logging)
@@ -30,7 +30,7 @@ kotlin {
 }
 
 android {
-    namespace = "com.alexmprog.thepets.core.network"
+    namespace = "com.alexmprog.thepets.domain.dogs"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

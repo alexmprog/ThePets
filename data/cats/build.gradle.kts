@@ -12,25 +12,20 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
+            implementation(projects.common.dispatchers)
             implementation(projects.common.utils)
+            implementation(projects.core.database)
+            implementation(projects.core.network)
+            implementation(projects.domain.cats)
             implementation(libs.koin.core)
-            api(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.logging)
-        }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-        }
-        androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
         }
     }
 }
 
 android {
-    namespace = "com.alexmprog.thepets.core.network"
+    namespace = "com.alexmprog.thepets.data.cats"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

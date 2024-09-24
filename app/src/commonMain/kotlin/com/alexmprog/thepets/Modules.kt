@@ -2,6 +2,8 @@ package com.alexmprog.thepets
 
 import com.alexmprog.thepets.common.dispatchers.dispatchersModule
 import com.alexmprog.thepets.core.database.databaseModule
+import com.alexmprog.thepets.data.cats.di.catsDataModule
+import com.alexmprog.thepets.domain.cats.di.catsDomainModule
 import com.alexmprog.thepets.feature.cats.impl.di.catsFeatureModule
 import com.alexmprog.thepets.feature.dogs.impl.di.dogsFeatureModule
 import com.alexmprog.thepets.feature.home.impl.di.homeFeatureModule
@@ -18,6 +20,16 @@ private val coreModules
         databaseModule
     )
 
+private val dataModules
+    get() = listOf(
+        catsDataModule
+    )
+
+private val domainModules
+    get() = listOf(
+        catsDomainModule
+    )
+
 private val featureModules
     get() = listOf(
         catsFeatureModule,
@@ -29,5 +41,7 @@ val appModules
     get() = listOf(
         commonModules,
         coreModules,
-        featureModules,
+        dataModules,
+        domainModules,
+        featureModules
     ).flatten()

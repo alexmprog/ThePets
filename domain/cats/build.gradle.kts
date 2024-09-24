@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -12,25 +11,15 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.logger)
             implementation(projects.common.utils)
             implementation(libs.koin.core)
-            api(libs.ktor.client.core)
-            implementation(libs.ktor.client.content.negotiation)
-            implementation(libs.ktor.serialization.kotlinx.json)
-            implementation(libs.ktor.client.logging)
-        }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-        }
-        androidMain.dependencies {
-            implementation(libs.ktor.client.okhttp)
+            implementation(libs.kotlinx.coroutines.core)
         }
     }
 }
 
 android {
-    namespace = "com.alexmprog.thepets.core.network"
+    namespace = "com.alexmprog.thepets.domain.cats"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {

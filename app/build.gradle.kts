@@ -30,6 +30,8 @@ kotlin {
             implementation(projects.core.network)
             implementation(projects.core.database)
             implementation(projects.core.ui)
+            implementation(projects.data.cats)
+            implementation(projects.domain.cats)
             implementation(projects.feature.cats.api)
             implementation(projects.feature.cats.impl)
             implementation(projects.feature.dogs.api)
