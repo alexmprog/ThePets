@@ -1,9 +1,9 @@
 package com.alexmprog.thepets.core.network
 
 import com.alexmprog.common.logger.Logger
-import com.alexmprog.common.utils.Error
-import com.alexmprog.common.utils.GenericError
-import com.alexmprog.common.utils.Resource
+import com.alexmprog.common.utils.resource.Error
+import com.alexmprog.common.utils.resource.GenericError
+import com.alexmprog.common.utils.resource.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpTimeout
@@ -48,9 +48,9 @@ suspend inline fun <reified T> HttpClient.fetch(
     val response = try {
         request(block)
     } catch (e: UnresolvedAddressException) {
-        return Resource.Error(GenericError.NO_INTERNET)
+        return Resource.Failure(GenericError.NO_INTERNET)
     } catch (e: SerializationException) {
-        return Resource.Error(GenericError.SERIALIZATION)
+        return Resource.Failure(GenericError.SERIALIZATION)
     }
     return response.toResult<T>()
 }
@@ -59,9 +59,9 @@ suspend inline fun <reified T> HttpClient.fetchUrl(url: String): Resource<T, Err
     val response = try {
         get(url)
     } catch (e: UnresolvedAddressException) {
-        return Resource.Error(GenericError.NO_INTERNET)
+        return Resource.Failure(GenericError.NO_INTERNET)
     } catch (e: SerializationException) {
-        return Resource.Error(GenericError.SERIALIZATION)
+        return Resource.Failure(GenericError.SERIALIZATION)
     }
     return response.toResult<T>()
 }
@@ -69,7 +69,7 @@ suspend inline fun <reified T> HttpClient.fetchUrl(url: String): Resource<T, Err
 suspend inline fun <reified T> HttpResponse.toResult(): Resource<T, Error> {
     return when (status.value) {
         in 200..299 -> Resource.Success(body<T>())
-        in 500..599 -> Resource.Error(GenericError.SERVER_ERROR)
-        else -> Resource.Error(GenericError.UNKNOWN)
+        in 500..599 -> Resource.Failure(GenericError.SERVER_ERROR)
+        else -> Resource.Failure(GenericError.UNKNOWN)
     }
 }

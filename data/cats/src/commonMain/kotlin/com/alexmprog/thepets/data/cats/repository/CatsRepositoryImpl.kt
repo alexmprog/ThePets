@@ -2,9 +2,9 @@ package com.alexmprog.thepets.data.cats.repository
 
 import com.alexmprog.thepets.core.database.dao.CatsDao
 import com.alexmprog.thepets.core.database.model.CatEntity
-import com.alexmprog.common.utils.Error
-import com.alexmprog.common.utils.Resource
-import com.alexmprog.common.utils.map
+import com.alexmprog.common.utils.resource.Error
+import com.alexmprog.common.utils.resource.Resource
+import com.alexmprog.common.utils.resource.map
 import com.alexmprog.thepets.data.cats.network.CatDto
 import com.alexmprog.thepets.data.cats.network.CatsService
 import com.alexmprog.thepets.domain.cats.model.Cat

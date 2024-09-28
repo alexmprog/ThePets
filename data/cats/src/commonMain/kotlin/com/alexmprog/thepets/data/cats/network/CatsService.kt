@@ -1,7 +1,7 @@
 package com.alexmprog.thepets.data.cats.network
 
-import com.alexmprog.common.utils.Error
-import com.alexmprog.common.utils.Resource
+import com.alexmprog.common.utils.resource.Error
+import com.alexmprog.common.utils.resource.Resource
 import com.alexmprog.thepets.core.network.fetchUrl
 import io.ktor.client.HttpClient
 

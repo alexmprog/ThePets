@@ -1,7 +1,7 @@
 package com.alexmprog.thepets.domain.dogs.usecase
 
-import com.alexmprog.common.utils.Error
-import com.alexmprog.common.utils.Resource
+import com.alexmprog.common.utils.resource.Error
+import com.alexmprog.common.utils.resource.Resource
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import com.alexmprog.thepets.domain.dogs.repository.DogsRepository
 

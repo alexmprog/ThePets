@@ -2,8 +2,8 @@ package com.alexmprog.thepets.feature.cats.impl.presentation
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.alexmprog.common.utils.onError
-import com.alexmprog.common.utils.onSuccess
+import com.alexmprog.common.utils.resource.onError
+import com.alexmprog.common.utils.resource.onSuccess
 import com.alexmprog.thepets.domain.cats.model.Cat
 import com.alexmprog.thepets.domain.cats.usecase.GetCatsUseCase
 import com.alexmprog.thepets.domain.cats.usecase.SaveCatUseCase

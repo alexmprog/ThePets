@@ -1,4 +1,4 @@
-package com.alexmprog.common.utils
+package com.alexmprog.common.utils.platform
 
 import android.os.Build
 
