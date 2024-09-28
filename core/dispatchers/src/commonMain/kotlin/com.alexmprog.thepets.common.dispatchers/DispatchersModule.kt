@@ -9,7 +9,8 @@ import org.koin.dsl.module
 const val CommonIoDispatcher = "IoDispatcher"
 const val CommonDefaultDispatcher = "DefaultDispatcher"
 
-val dispatchersModule = module {
-    single<CoroutineDispatcher>((named(CommonIoDispatcher))) { Dispatchers.IO }
-    single<CoroutineDispatcher>((named(CommonDefaultDispatcher))) { Dispatchers.Default }
-}
+val dispatchersModule
+    get() = module {
+        single<CoroutineDispatcher>((named(CommonIoDispatcher))) { Dispatchers.IO }
+        single<CoroutineDispatcher>((named(CommonDefaultDispatcher))) { Dispatchers.Default }
+    }

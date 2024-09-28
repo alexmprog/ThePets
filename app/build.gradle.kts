@@ -25,10 +25,10 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.dispatchers)
             implementation(projects.common.logger)
-            implementation(projects.core.network)
             implementation(projects.core.database)
+            implementation(projects.core.dispatchers)
+            implementation(projects.core.network)
             implementation(projects.core.ui)
             implementation(projects.data.cats)
             implementation(projects.data.dogs)

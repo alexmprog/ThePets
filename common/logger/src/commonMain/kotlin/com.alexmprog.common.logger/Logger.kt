@@ -1,11 +1,11 @@
-package com.alexmprog.thepets.common.logger
+package com.alexmprog.common.logger
 
 object Logger {
 
     private var isEnabled: Boolean = true
 
     fun init(isEnabled: Boolean = true) {
-        this.isEnabled = isEnabled
+        Logger.isEnabled = isEnabled
     }
 
     fun log(tag: String, message: String) {

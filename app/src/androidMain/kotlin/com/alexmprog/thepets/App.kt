@@ -1,7 +1,7 @@
 package com.alexmprog.thepets
 
 import android.app.Application
-import com.alexmprog.thepets.common.logger.Logger
+import com.alexmprog.common.logger.Logger
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 

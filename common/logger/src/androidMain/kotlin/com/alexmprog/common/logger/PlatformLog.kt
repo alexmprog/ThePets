@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.common.logger
+package com.alexmprog.common.logger
 
 import android.util.Log
 

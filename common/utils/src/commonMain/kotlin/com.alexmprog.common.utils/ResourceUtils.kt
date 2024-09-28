@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.core.utils
+package com.alexmprog.common.utils
 
 interface Error
 
@@ -13,8 +13,7 @@ enum class GenericError : Error {
 // add Loading state if needed
 sealed interface Resource<out D, out E : Error> {
     data class Success<out D>(val data: D) : Resource<D, Nothing>
-    data class Error<out E : com.alexmprog.thepets.core.utils.Error>(val error: E) :
-        Resource<Nothing, E>
+    data class Error<out E : com.alexmprog.common.utils.Error>(val error: E) : Resource<Nothing, E>
 }
 
 inline fun <T, E : Error, R> Resource<T, E>.map(map: (T) -> R): Resource<R, E> {

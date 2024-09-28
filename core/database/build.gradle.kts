@@ -19,14 +19,11 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(projects.common.logger)
-            implementation(projects.common.dispatchers)
+            implementation(projects.core.dispatchers)
             implementation(libs.koin.core)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
             implementation(libs.sqlite)
-        }
-        androidMain.dependencies {
-            implementation(libs.koin.android)
         }
     }
 }

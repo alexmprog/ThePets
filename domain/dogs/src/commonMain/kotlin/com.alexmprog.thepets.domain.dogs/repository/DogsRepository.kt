@@ -1,7 +1,7 @@
 package com.alexmprog.thepets.domain.dogs.repository
 
-import com.alexmprog.thepets.core.utils.Error
-import com.alexmprog.thepets.core.utils.Resource
+import com.alexmprog.common.utils.Error
+import com.alexmprog.common.utils.Resource
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import kotlinx.coroutines.flow.Flow
 

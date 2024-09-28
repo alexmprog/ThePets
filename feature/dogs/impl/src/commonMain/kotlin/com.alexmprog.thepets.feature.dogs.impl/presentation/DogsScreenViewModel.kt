@@ -2,8 +2,8 @@ package com.alexmprog.thepets.feature.dogs.impl.presentation
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
-import com.alexmprog.thepets.core.utils.onError
-import com.alexmprog.thepets.core.utils.onSuccess
+import com.alexmprog.common.utils.onError
+import com.alexmprog.common.utils.onSuccess
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import com.alexmprog.thepets.domain.dogs.usecase.GetDogsUseCase
 import com.alexmprog.thepets.domain.dogs.usecase.SaveDogUseCase

@@ -1,9 +1,9 @@
 package com.alexmprog.thepets.core.network
 
-import com.alexmprog.thepets.common.logger.Logger
-import com.alexmprog.thepets.core.utils.Error
-import com.alexmprog.thepets.core.utils.GenericError
-import com.alexmprog.thepets.core.utils.Resource
+import com.alexmprog.common.logger.Logger
+import com.alexmprog.common.utils.Error
+import com.alexmprog.common.utils.GenericError
+import com.alexmprog.common.utils.Resource
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.HttpTimeout

@@ -31,10 +31,10 @@ dependencyResolutionManagement {
 }
 
 include(":app")
-include(":common:dispatchers")
 include(":common:logger")
 include(":common:utils")
 include(":core:database")
+include(":core:dispatchers")
 include(":core:network")
 include(":core:ui")
 include(":data:cats")

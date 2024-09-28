@@ -2,9 +2,9 @@ package com.alexmprog.thepets.data.dogs.repository
 
 import com.alexmprog.thepets.core.database.dao.DogsDao
 import com.alexmprog.thepets.core.database.model.DogEntity
-import com.alexmprog.thepets.core.utils.Error
-import com.alexmprog.thepets.core.utils.Resource
-import com.alexmprog.thepets.core.utils.map
+import com.alexmprog.common.utils.Error
+import com.alexmprog.common.utils.Resource
+import com.alexmprog.common.utils.map
 import com.alexmprog.thepets.data.dogs.network.DogsResponse
 import com.alexmprog.thepets.data.dogs.network.DogsService
 import com.alexmprog.thepets.domain.dogs.model.Dog

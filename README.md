@@ -33,11 +33,11 @@ Compose Multiplatform application simply loads data from API and stores it in pe
 graph TB
   subgraph :common
     :common:logger["logger"]
-    :common:dispatchers["dispatchers"]
     :common:utils["utils"]
   end
   subgraph :core
     :core:database["database"]
+    :core:dispatchers["dispatchers"]
     :core:network["network"]
     :core:ui["ui"]
   end
@@ -62,8 +62,7 @@ graph TB
     :feature:home:api["api"]
   end
   :core:database --> :common:logger
-  :core:database --> :common:dispatchers
-  :feature:home:impl --> :common:dispatchers
+  :core:database --> :core:dispatchers
   :feature:home:impl --> :common:logger
   :feature:home:impl --> :common:utils
   :feature:home:impl --> :core:database
@@ -71,15 +70,15 @@ graph TB
   :feature:home:impl --> :feature:cats:api
   :feature:home:impl --> :feature:dogs:api
   :feature:home:impl --> :feature:home:api
-  :data:cats --> :common:dispatchers
   :data:cats --> :common:utils
   :data:cats --> :core:database
+  :data:cats --> :core:dispatchers
   :data:cats --> :core:network
   :data:cats --> :domain:cats
-  :app --> :common:dispatchers
   :app --> :common:logger
-  :app --> :core:network
   :app --> :core:database
+  :app --> :core:dispatchers
+  :app --> :core:network
   :app --> :core:ui
   :app --> :data:cats
   :app --> :data:dogs
@@ -91,12 +90,11 @@ graph TB
   :app --> :feature:dogs:impl
   :app --> :feature:home:api
   :app --> :feature:home:impl
-  :feature:home:api --> :common:utils
   :core:network --> :common:logger
   :core:network --> :common:utils
-  :data:dogs --> :common:dispatchers
   :data:dogs --> :common:utils
   :data:dogs --> :core:database
+  :data:dogs --> :core:dispatchers
   :data:dogs --> :core:network
   :data:dogs --> :domain:dogs
   :domain:cats --> :common:utils
@@ -114,7 +112,7 @@ classDef kotlin-multiplatform fill:#C792EA,stroke:#fff,stroke-width:2px,color:#f
 classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
 class :core:database kotlin-multiplatform
 class :common:logger kotlin-multiplatform
-class :common:dispatchers kotlin-multiplatform
+class :core:dispatchers kotlin-multiplatform
 class :feature:home:impl kotlin-multiplatform
 class :common:utils kotlin-multiplatform
 class :core:network kotlin-multiplatform

@@ -12,9 +12,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(projects.common.dispatchers)
             implementation(projects.common.utils)
             implementation(projects.core.database)
+            implementation(projects.core.dispatchers)
             implementation(projects.core.network)
             implementation(projects.domain.cats)
             implementation(libs.koin.core)

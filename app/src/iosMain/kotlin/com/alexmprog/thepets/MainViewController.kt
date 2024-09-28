@@ -2,7 +2,7 @@ package com.alexmprog.thepets
 
 import androidx.compose.ui.window.ComposeUIViewController
 import cafe.adriel.voyager.navigator.Navigator
-import com.alexmprog.thepets.common.logger.Logger
+import com.alexmprog.common.logger.Logger
 import com.alexmprog.thepets.core.ui.theme.PetsTheme
 import com.alexmprog.thepets.feature.home.api.HomeFeature
 import org.koin.compose.koinInject

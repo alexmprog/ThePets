@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.core.utils
+package com.alexmprog.common.utils
 
 import platform.UIKit.UIDevice
 
