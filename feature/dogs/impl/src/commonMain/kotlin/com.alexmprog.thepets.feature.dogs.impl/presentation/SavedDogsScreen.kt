@@ -39,7 +39,7 @@ internal class SavedDogsScreen : Screen {
 
     @Composable
     override fun Content() {
-        val viewModel = koinScreenModel<SavedDogsViewModel>()
+        val viewModel = koinScreenModel<SavedDogsScreenModel>()
         val state by viewModel.state.collectAsState()
         SavedDogsScreenContent(state, onDogClick = { viewModel.delete(it) })
     }

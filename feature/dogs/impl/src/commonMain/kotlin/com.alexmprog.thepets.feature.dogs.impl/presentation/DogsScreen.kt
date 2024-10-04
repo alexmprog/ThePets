@@ -23,7 +23,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -33,22 +32,24 @@ import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
+import com.alexmprog.thepets.core.ui.components.ErrorView
 import com.alexmprog.thepets.core.ui.components.LoadingView
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import org.jetbrains.compose.resources.stringResource
 import com.alexmprog.thepets.feature.dogs.impl.Res
 import com.alexmprog.thepets.feature.dogs.impl.dogs
+import com.alexmprog.thepets.feature.dogs.impl.load_dogs_error
 
 internal class DogsScreen : Screen {
 
     @Composable
     override fun Content() {
-        val viewModel = koinScreenModel<DogsScreenViewModel>()
-        val state by viewModel.state.collectAsState()
+        val screenModel = koinScreenModel<DogsScreenModel>()
+        val state by screenModel.state.collectAsState()
         DogsScreenContent(
             state,
-            onRefreshClick = { viewModel.refresh() },
-            onDogClick = { viewModel.save(it) })
+            onRefreshClick = { screenModel.refresh() },
+            onDogClick = { screenModel.save(it) })
     }
 }
 
@@ -60,7 +61,6 @@ internal fun DogsScreenContent(
     onDogClick: (Dog) -> Unit
 ) {
     val navigator = LocalNavigator.currentOrThrow
-    LaunchedEffect(Unit){ onRefreshClick() }
     Scaffold(topBar = {
         TopAppBar(title = { Text(stringResource(Res.string.dogs)) },
             navigationIcon = {
@@ -90,6 +90,7 @@ internal fun DogsScreenContent(
     }) { innerPaddings ->
         BoxWithConstraints(modifier = Modifier.padding(innerPaddings).fillMaxSize()) {
             if (state.isLoading) LoadingView()
+            else if (state.showError) ErrorView(Res.string.load_dogs_error) { onRefreshClick() }
             else {
                 val count = 3
                 val height = maxHeight

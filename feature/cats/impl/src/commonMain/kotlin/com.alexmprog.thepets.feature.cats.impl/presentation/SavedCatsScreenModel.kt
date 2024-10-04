@@ -6,6 +6,7 @@ import com.alexmprog.thepets.domain.cats.model.Cat
 import com.alexmprog.thepets.domain.cats.usecase.DeleteCatUseCase
 import com.alexmprog.thepets.domain.cats.usecase.ObserveCatsUseCase
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.StateFlow
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 
@@ -27,6 +28,8 @@ internal class SavedCatsScreenModel(
                 }
             }
         }
+
+    val state: StateFlow<SavedCatsScreenState> = container.refCountStateFlow
 
     fun delete(cat: Cat) {
         intent {

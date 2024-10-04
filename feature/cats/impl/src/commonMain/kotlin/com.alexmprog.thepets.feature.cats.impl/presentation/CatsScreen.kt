@@ -45,7 +45,7 @@ internal class CatsScreen : Screen {
     @Composable
     override fun Content() {
         val screenModel = koinScreenModel<CatsScreenModel>()
-        val state by screenModel.container.refCountStateFlow.collectAsState()
+        val state by screenModel.state.collectAsState()
         CatsScreenContent(
             state,
             onRefreshClick = { screenModel.refresh() },

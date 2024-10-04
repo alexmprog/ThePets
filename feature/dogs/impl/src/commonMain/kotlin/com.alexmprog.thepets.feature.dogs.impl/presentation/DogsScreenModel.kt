@@ -7,44 +7,52 @@ import com.alexmprog.common.utils.resource.onSuccess
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import com.alexmprog.thepets.domain.dogs.usecase.GetDogsUseCase
 import com.alexmprog.thepets.domain.dogs.usecase.SaveDogUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.container
 
 internal data class DogsScreenState(
     val isLoading: Boolean = false,
+    val showError: Boolean = false,
     val dogs: List<Dog> = emptyList()
 )
 
-internal class DogsScreenViewModel(
+internal class DogsScreenModel(
     private val getDogsUseCase: GetDogsUseCase,
     private val saveDogUseCase: SaveDogUseCase
-) : ScreenModel {
+) : ContainerHost<DogsScreenState, Unit>, ScreenModel {
 
-    private val _state = MutableStateFlow(DogsScreenState())
-    val state: StateFlow<DogsScreenState> = _state.asStateFlow()
+    private var refreshJob: Job? = null
+
+    override val container =
+        screenModelScope.container<DogsScreenState, Unit>(DogsScreenState())
+    val state: StateFlow<DogsScreenState> = container.refCountStateFlow
+
+    init {
+        refresh()
+    }
 
     fun refresh() {
-        screenModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+        refreshJob?.cancel()
+        refreshJob = intent {
+            reduce { state.copy(isLoading = true) }
             getDogsUseCase(9)
                 .onSuccess { dogs ->
-                    _state.update { DogsScreenState(dogs = dogs) }
+                    reduce { state.copy(isLoading = false, dogs = dogs) }
                 }.onError {
-                    _state.update { DogsScreenState() }
+                    reduce { DogsScreenState(showError = true) }
                 }
         }
     }
 
     fun save(dog: Dog) {
-        screenModelScope.launch {
+        intent {
             saveDogUseCase(dog)
-            _state.update {
-                val items = it.dogs.toMutableList()
+            reduce {
+                val items = state.dogs.toMutableList()
                 items.remove(dog)
-                it.copy(dogs = items)
+                state.copy(dogs = items)
             }
         }
     }

@@ -40,7 +40,7 @@ internal class SavedCatsScreen : Screen {
     @Composable
     override fun Content() {
         val screenModel = koinScreenModel<SavedCatsScreenModel>()
-        val state by screenModel.container.stateFlow.collectAsState()
+        val state by screenModel.state.collectAsState()
         SavedCatsScreenContent(state, onCatClick = { screenModel.delete(it) })
     }
 }

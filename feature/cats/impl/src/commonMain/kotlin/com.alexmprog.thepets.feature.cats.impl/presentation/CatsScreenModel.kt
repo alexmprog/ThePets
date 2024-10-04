@@ -8,6 +8,7 @@ import com.alexmprog.thepets.domain.cats.model.Cat
 import com.alexmprog.thepets.domain.cats.usecase.GetCatsUseCase
 import com.alexmprog.thepets.domain.cats.usecase.SaveCatUseCase
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.StateFlow
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 
@@ -26,6 +27,8 @@ internal class CatsScreenModel(
 
     override val container =
         screenModelScope.container<CatsScreenState, Unit>(CatsScreenState())
+
+    val state: StateFlow<CatsScreenState> = container.refCountStateFlow
 
     init {
         refresh()
