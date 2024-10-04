@@ -7,44 +7,50 @@ import com.alexmprog.common.utils.resource.onSuccess
 import com.alexmprog.thepets.domain.cats.model.Cat
 import com.alexmprog.thepets.domain.cats.usecase.GetCatsUseCase
 import com.alexmprog.thepets.domain.cats.usecase.SaveCatUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Job
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.container
 
 internal data class CatsScreenState(
     val isLoading: Boolean = false,
+    val showError: Boolean = false,
     val cats: List<Cat> = emptyList()
 )
 
-internal class CatsScreenViewModel(
+internal class CatsScreenModel(
     private val getCatsUseCase: GetCatsUseCase,
     private val saveCatUseCase: SaveCatUseCase
-) : ScreenModel {
+) : ContainerHost<CatsScreenState, Unit>, ScreenModel {
 
-    private val _state = MutableStateFlow(CatsScreenState())
-    val state: StateFlow<CatsScreenState> = _state.asStateFlow()
+    private var refreshJob: Job? = null
+
+    override val container =
+        screenModelScope.container<CatsScreenState, Unit>(CatsScreenState())
+
+    init {
+        refresh()
+    }
 
     fun refresh() {
-        screenModelScope.launch {
-            _state.update { it.copy(isLoading = true) }
+        refreshJob?.cancel()
+        refreshJob = intent {
+            reduce { state.copy(isLoading = true) }
             getCatsUseCase(9)
                 .onSuccess { cats ->
-                    _state.update { CatsScreenState(cats = cats)}
+                    reduce { state.copy(isLoading = false, cats = cats) }
                 }.onError {
-                    _state.update { CatsScreenState() }
+                    reduce { CatsScreenState(showError = true) }
                 }
         }
     }
 
     fun save(cat: Cat) {
-        screenModelScope.launch {
+        intent {
             saveCatUseCase(cat)
-            _state.update {
-                val items = it.cats.toMutableList()
+            reduce {
+                val items = state.cats.toMutableList()
                 items.remove(cat)
-                it.copy(cats = items)
+                state.copy(cats = items)
             }
         }
     }

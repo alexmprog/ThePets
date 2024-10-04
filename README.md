@@ -13,12 +13,13 @@ Compose Multiplatform application simply loads data from API and stores it in pe
 [Kotlin Gradle DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Provides an alternative syntax to the traditional Groovy DSL for Gradle build system. <br>
 [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Kotlin Asynchronous or non-blocking programming.<br>
 [Compose](https://developer.android.com/develop/ui/compose/documentation) - The modern toolkit for building native Android UI.<br>
-[ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes.<br>
+[Orbit](https://orbit-mvi.org) - Redux/MVI-like library. It's so simple we think of it as MVVM+.<br>
 [Voyager](https://voyager.adriel.cafe) - Component helps you implement navigation.<br>
 [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.<br>
 [Koin](https://insert-koin.io) - The pragmatic Kotlin Dependency Injection framework.<br>
 [Ktor](https://ktor.io) - A type-safe Kotlin Multiplatform HTTP client.<br>
 [Kotlin Serialization](https://kotlinlang.org/docs/serialization.html)) - A modern JSON library for Kotlin and Java.<br>
+[Coil](https://coil-kt.github.io/coil/) - An image loading library for Android and Compose Multiplatform.<br>
 
 ## Module Graph
 

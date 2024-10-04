@@ -1,4 +1,5 @@
 <resources>
     <string name="cats">Cats</string>
     <string name="saved_cats">Saved cats</string>
+    <string name="load_cats_error">Can not load cats. Something was wrong.</string>
 </resources>

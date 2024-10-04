@@ -32,6 +32,8 @@ kotlin {
             implementation(libs.voyager.koin)
             implementation(libs.voyager.screenModel)
 
+            implementation(libs.orbit.mvi.core)
+
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
         }
@@ -52,5 +54,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    dependencies { debugImplementation(libs.compose.ui.tooling) }
 }

@@ -1,4 +1,3 @@
 <resources>
     <string name="refresh">Refresh</string>
-    <string name="empty_data_message">There is no data</string>
 </resources>

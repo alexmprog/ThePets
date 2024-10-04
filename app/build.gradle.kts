@@ -1,3 +1,5 @@
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -12,6 +14,8 @@ compose.resources {
 kotlin {
     androidTarget()
 
+    //jvm("desktop")
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,6 +28,9 @@ kotlin {
     }
 
     sourceSets {
+
+        //val desktopMain by getting
+
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.core.database)
@@ -42,8 +49,6 @@ kotlin {
             implementation(projects.feature.home.impl)
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.voyager.koin)
@@ -52,13 +57,13 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.androidx.activity.compose)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.ui.tooling.preview)
             implementation(libs.koin.android)
-            implementation(libs.koin.android.compose)
-            implementation(libs.koin.android.navigation)
         }
+
+//        desktopMain.dependencies {
+//            implementation(compose.desktop.currentOs)
+//            implementation(libs.kotlinx.coroutines.swing)
+//        }
     }
 }
 
@@ -86,7 +91,16 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    dependencies {
-        debugImplementation(libs.compose.ui.tooling)
+}
+
+compose.desktop {
+    application {
+        mainClass = "com.alexmprog.thepets.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "com.alexmprog.thepets"
+            packageVersion = "1.0.0"
+        }
     }
 }
