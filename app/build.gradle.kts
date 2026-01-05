@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -14,8 +12,6 @@ compose.resources {
 kotlin {
     androidTarget()
 
-    //jvm("desktop")
-
     listOf(
         iosX64(),
         iosArm64(),
@@ -29,17 +25,13 @@ kotlin {
 
     sourceSets {
 
-        //val desktopMain by getting
-
         commonMain.dependencies {
             implementation(projects.common.logger)
             implementation(projects.core.database)
             implementation(projects.core.dispatchers)
             implementation(projects.core.network)
             implementation(projects.core.ui)
-            implementation(projects.data.cats)
             implementation(projects.data.dogs)
-            implementation(projects.domain.cats)
             implementation(projects.domain.dogs)
             implementation(projects.feature.cats.api)
             implementation(projects.feature.cats.impl)
@@ -59,11 +51,6 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
         }
-
-//        desktopMain.dependencies {
-//            implementation(compose.desktop.currentOs)
-//            implementation(libs.kotlinx.coroutines.swing)
-//        }
     }
 }
 
@@ -88,19 +75,7 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-}
-
-compose.desktop {
-    application {
-        mainClass = "com.alexmprog.thepets.MainKt"
-
-        nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.alexmprog.thepets"
-            packageVersion = "1.0.0"
-        }
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }

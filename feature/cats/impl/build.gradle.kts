@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -15,10 +16,15 @@ kotlin {
         commonMain.dependencies {
             implementation(projects.common.utils)
             implementation(projects.core.ui)
-            implementation(projects.domain.cats)
+
             implementation(projects.feature.cats.api)
 
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
+
+            implementation(projects.core.database)
+            implementation(projects.core.dispatchers)
+            implementation(projects.core.network)
 
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
@@ -51,7 +57,7 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }

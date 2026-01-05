@@ -2,9 +2,7 @@ package com.alexmprog.thepets
 
 import com.alexmprog.thepets.common.dispatchers.dispatchersModule
 import com.alexmprog.thepets.core.database.databaseModule
-import com.alexmprog.thepets.data.cats.di.catsDataModule
 import com.alexmprog.thepets.data.dogs.di.dogsDataModule
-import com.alexmprog.thepets.domain.cats.di.catsDomainModule
 import com.alexmprog.thepets.domain.dogs.di.dogsDomainModule
 import com.alexmprog.thepets.feature.cats.impl.di.catsFeatureModule
 import com.alexmprog.thepets.feature.dogs.impl.di.dogsFeatureModule
@@ -24,13 +22,11 @@ private val coreModules
 
 private val dataModules
     get() = listOf(
-        catsDataModule,
         dogsDataModule
     )
 
 private val domainModules
     get() = listOf(
-        catsDomainModule,
         dogsDomainModule
     )
 
