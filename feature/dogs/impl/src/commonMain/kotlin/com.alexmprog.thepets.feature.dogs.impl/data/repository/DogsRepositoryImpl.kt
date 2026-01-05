@@ -1,14 +1,14 @@
-package com.alexmprog.thepets.data.dogs.repository
+package com.alexmprog.thepets.feature.dogs.impl.data.repository
 
-import com.alexmprog.thepets.core.database.dao.DogsDao
-import com.alexmprog.thepets.core.database.model.DogEntity
 import com.alexmprog.common.utils.resource.Error
 import com.alexmprog.common.utils.resource.Resource
 import com.alexmprog.common.utils.resource.map
-import com.alexmprog.thepets.data.dogs.network.DogsResponse
-import com.alexmprog.thepets.data.dogs.network.DogsService
-import com.alexmprog.thepets.domain.dogs.model.Dog
-import com.alexmprog.thepets.domain.dogs.repository.DogsRepository
+import com.alexmprog.thepets.core.database.dao.DogsDao
+import com.alexmprog.thepets.core.database.model.DogEntity
+import com.alexmprog.thepets.feature.dogs.api.domain.model.Dog
+import com.alexmprog.thepets.feature.dogs.impl.data.network.DogsResponse
+import com.alexmprog.thepets.feature.dogs.impl.data.network.DogsService
+import com.alexmprog.thepets.feature.dogs.impl.domain.repository.DogsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -33,7 +33,8 @@ internal class DogsRepositoryImpl(
         dogsDao.delete(dog.id)
     }
 
-    override fun observerDogs(): Flow<List<Dog>> = dogsDao.observe().map { it.map { it.toModel() } }
+    override fun observeDogs(): Flow<List<Dog>> =
+        dogsDao.observe().map { entities -> entities.map { it.toModel() } }
 }
 
 internal fun DogsResponse.toModel(): List<Dog> = message.map { Dog(it, it) }

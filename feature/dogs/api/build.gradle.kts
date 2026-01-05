@@ -13,6 +13,7 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation(projects.common.utils)
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(libs.voyager.core)

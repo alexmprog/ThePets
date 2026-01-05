@@ -31,8 +31,6 @@ kotlin {
             implementation(projects.core.dispatchers)
             implementation(projects.core.network)
             implementation(projects.core.ui)
-            implementation(projects.data.dogs)
-            implementation(projects.domain.dogs)
             implementation(projects.feature.cats.api)
             implementation(projects.feature.cats.impl)
             implementation(projects.feature.dogs.api)

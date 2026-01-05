@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.data.dogs.network
+package com.alexmprog.thepets.feature.dogs.impl.data.network
 
 import com.alexmprog.common.utils.resource.Error
 import com.alexmprog.common.utils.resource.Resource
@@ -12,5 +12,5 @@ internal interface DogsService {
 internal class DogsServiceImpl(private val httpClient: HttpClient) : DogsService {
 
     override suspend fun getDogs(limit: Int): Resource<DogsResponse, Error> =
-        httpClient.fetchUrl<DogsResponse>("https://dog.ceo/api/breeds/image/random/${limit}")
+        httpClient.fetchUrl("https://dog.ceo/api/breeds/image/random/$limit")
 }
