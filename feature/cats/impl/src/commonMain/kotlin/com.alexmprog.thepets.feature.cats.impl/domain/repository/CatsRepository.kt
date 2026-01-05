@@ -1,11 +1,11 @@
-package com.alexmprog.thepets.domain.cats.repository
+package com.alexmprog.thepets.feature.cats.impl.domain.repository
 
 import com.alexmprog.common.utils.resource.Error
 import com.alexmprog.common.utils.resource.Resource
-import com.alexmprog.thepets.domain.cats.model.Cat
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
 import kotlinx.coroutines.flow.Flow
 
-interface CatsRepository {
+internal interface CatsRepository {
 
     suspend fun getCats(limit: Int): Resource<List<Cat>, Error>
 

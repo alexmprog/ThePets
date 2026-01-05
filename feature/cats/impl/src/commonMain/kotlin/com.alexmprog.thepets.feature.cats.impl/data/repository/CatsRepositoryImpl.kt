@@ -1,18 +1,19 @@
-package com.alexmprog.thepets.data.cats.repository
+package com.alexmprog.thepets.feature.cats.impl.data.repository
 
 import com.alexmprog.thepets.core.database.dao.CatsDao
 import com.alexmprog.thepets.core.database.model.CatEntity
 import com.alexmprog.common.utils.resource.Error
 import com.alexmprog.common.utils.resource.Resource
 import com.alexmprog.common.utils.resource.map
-import com.alexmprog.thepets.data.cats.network.CatDto
-import com.alexmprog.thepets.data.cats.network.CatsService
-import com.alexmprog.thepets.domain.cats.model.Cat
-import com.alexmprog.thepets.domain.cats.repository.CatsRepository
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
+import com.alexmprog.thepets.feature.cats.impl.data.network.CatDto
+import com.alexmprog.thepets.feature.cats.impl.data.network.CatsService
+import com.alexmprog.thepets.feature.cats.impl.domain.repository.CatsRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import kotlin.collections.map
 
 internal class CatsRepositoryImpl(
     private val catsService: CatsService,

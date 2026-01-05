@@ -4,9 +4,9 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.alexmprog.common.utils.resource.onError
 import com.alexmprog.common.utils.resource.onSuccess
-import com.alexmprog.thepets.domain.cats.model.Cat
-import com.alexmprog.thepets.domain.cats.usecase.GetCatsUseCase
-import com.alexmprog.thepets.domain.cats.usecase.SaveCatUseCase
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
+import com.alexmprog.thepets.feature.cats.api.domain.usecase.GetCatsUseCase
+import com.alexmprog.thepets.feature.cats.api.domain.usecase.SaveCatUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.StateFlow
 import org.orbitmvi.orbit.ContainerHost
@@ -47,14 +47,12 @@ internal class CatsScreenModel(
         }
     }
 
-    fun save(cat: Cat) {
-        intent {
-            saveCatUseCase(cat)
-            reduce {
-                val items = state.cats.toMutableList()
-                items.remove(cat)
-                state.copy(cats = items)
-            }
+    fun save(cat: Cat) = intent {
+        saveCatUseCase(cat)
+        reduce {
+            val items = state.cats.toMutableList()
+            items.remove(cat)
+            state.copy(cats = items)
         }
     }
 }

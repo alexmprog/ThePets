@@ -5,9 +5,7 @@ import cafe.adriel.voyager.core.model.screenModelScope
 import com.alexmprog.thepets.domain.dogs.model.Dog
 import com.alexmprog.thepets.domain.dogs.usecase.DeleteDogUseCase
 import com.alexmprog.thepets.domain.dogs.usecase.ObserveDogsUseCase
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 
@@ -23,7 +21,7 @@ internal class SavedDogsScreenModel(
 
     override val container =
         screenModelScope.container<SavedDogsScreenState, Unit>(SavedDogsScreenState()) {
-            coroutineScope {
+            repeatOnSubscription {
                 observeDogsUseCase().collect {
                     reduce { SavedDogsScreenState(false, it) }
                 }
@@ -32,10 +30,7 @@ internal class SavedDogsScreenModel(
 
     val state: StateFlow<SavedDogsScreenState> = container.refCountStateFlow
 
-    fun delete(dog: Dog) {
-        screenModelScope.launch {
-            deleteDogUseCase(dog)
-        }
+    fun delete(dog: Dog) = intent {
+        deleteDogUseCase(dog)
     }
-
 }

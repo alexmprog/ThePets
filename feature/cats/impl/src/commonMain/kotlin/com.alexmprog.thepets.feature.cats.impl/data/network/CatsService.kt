@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.data.cats.network
+package com.alexmprog.thepets.feature.cats.impl.data.network
 
 import com.alexmprog.common.utils.resource.Error
 import com.alexmprog.common.utils.resource.Resource

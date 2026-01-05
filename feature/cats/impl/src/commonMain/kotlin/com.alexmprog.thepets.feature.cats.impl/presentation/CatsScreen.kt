@@ -34,7 +34,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import coil3.compose.AsyncImage
 import com.alexmprog.thepets.core.ui.components.ErrorView
 import com.alexmprog.thepets.core.ui.components.LoadingView
-import com.alexmprog.thepets.domain.cats.model.Cat
+import com.alexmprog.thepets.feature.cats.api.domain.model.Cat
 import com.alexmprog.thepets.feature.cats.impl.Res
 import com.alexmprog.thepets.feature.cats.impl.cats
 import com.alexmprog.thepets.feature.cats.impl.load_cats_error

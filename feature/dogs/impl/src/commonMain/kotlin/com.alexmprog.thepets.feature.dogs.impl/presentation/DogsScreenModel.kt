@@ -46,14 +46,12 @@ internal class DogsScreenModel(
         }
     }
 
-    fun save(dog: Dog) {
-        intent {
-            saveDogUseCase(dog)
-            reduce {
-                val items = state.dogs.toMutableList()
-                items.remove(dog)
-                state.copy(dogs = items)
-            }
+    fun save(dog: Dog) = intent {
+        saveDogUseCase(dog)
+        reduce {
+            val items = state.dogs.toMutableList()
+            items.remove(dog)
+            state.copy(dogs = items)
         }
     }
 }

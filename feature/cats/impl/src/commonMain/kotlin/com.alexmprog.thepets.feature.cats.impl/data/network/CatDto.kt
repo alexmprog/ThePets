@@ -1,4 +1,4 @@
-package com.alexmprog.thepets.data.cats.network
+package com.alexmprog.thepets.feature.cats.impl.data.network
 
 import kotlinx.serialization.Serializable
 
