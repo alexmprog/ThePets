@@ -12,7 +12,6 @@ room {
 
 kotlin {
     androidTarget()
-    iosX64()
     iosArm64()
     iosSimulatorArm64()
 
@@ -23,7 +22,6 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.androidx.room.runtime)
             implementation(libs.sqlite.bundled)
-            implementation(libs.sqlite)
         }
     }
 }
@@ -41,7 +39,6 @@ android {
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
     add("kspIosSimulatorArm64", libs.androidx.room.compiler)
-    add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
 }
 

@@ -24,10 +24,7 @@ private fun getDatabase(
     coroutineDispatcher: CoroutineDispatcher,
     fileName: String,
 ): PetsDatabase = Room
-    .databaseBuilder<PetsDatabase>(
-        name = NSHomeDirectory() + "/$fileName",
-        factory = { PetsDatabase::class.instantiateImpl() }
-    )
+    .databaseBuilder<PetsDatabase>(name = NSHomeDirectory() + "/$fileName")
     .setDriver(BundledSQLiteDriver())
     .setQueryCoroutineContext(coroutineDispatcher)
     .build()
