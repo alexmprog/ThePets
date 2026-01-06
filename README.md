@@ -34,22 +34,14 @@ Compose Multiplatform application simply loads data from API and stores it in pe
 
 graph TB
   subgraph :common
-    :common:logger["logger"]
     :common:utils["utils"]
+    :common:logger["logger"]
   end
   subgraph :core
     :core:database["database"]
     :core:dispatchers["dispatchers"]
     :core:network["network"]
     :core:ui["ui"]
-  end
-  subgraph :data
-    :data:cats["cats"]
-    :data:dogs["dogs"]
-  end
-  subgraph :domain
-    :domain:cats["cats"]
-    :domain:dogs["dogs"]
   end
   subgraph :feature:cats
     :feature:cats:api["api"]
@@ -63,6 +55,7 @@ graph TB
     :feature:home:impl["impl"]
     :feature:home:api["api"]
   end
+  :feature:dogs:api --> :common:utils
   :core:database --> :common:logger
   :core:database --> :core:dispatchers
   :feature:home:impl --> :common:logger
@@ -72,20 +65,12 @@ graph TB
   :feature:home:impl --> :feature:cats:api
   :feature:home:impl --> :feature:dogs:api
   :feature:home:impl --> :feature:home:api
-  :data:cats --> :common:utils
-  :data:cats --> :core:database
-  :data:cats --> :core:dispatchers
-  :data:cats --> :core:network
-  :data:cats --> :domain:cats
+  :feature:cats:api --> :common:utils
   :app --> :common:logger
   :app --> :core:database
   :app --> :core:dispatchers
   :app --> :core:network
   :app --> :core:ui
-  :app --> :data:cats
-  :app --> :data:dogs
-  :app --> :domain:cats
-  :app --> :domain:dogs
   :app --> :feature:cats:api
   :app --> :feature:cats:impl
   :app --> :feature:dogs:api
@@ -94,39 +79,32 @@ graph TB
   :app --> :feature:home:impl
   :core:network --> :common:logger
   :core:network --> :common:utils
-  :data:dogs --> :common:utils
-  :data:dogs --> :core:database
-  :data:dogs --> :core:dispatchers
-  :data:dogs --> :core:network
-  :data:dogs --> :domain:dogs
-  :domain:cats --> :common:utils
   :feature:dogs:impl --> :common:utils
+  :feature:dogs:impl --> :core:database
+  :feature:dogs:impl --> :core:dispatchers
+  :feature:dogs:impl --> :core:network
   :feature:dogs:impl --> :core:ui
-  :feature:dogs:impl --> :domain:dogs
   :feature:dogs:impl --> :feature:dogs:api
-  :domain:dogs --> :common:utils
   :feature:cats:impl --> :common:utils
   :feature:cats:impl --> :core:ui
-  :feature:cats:impl --> :domain:cats
   :feature:cats:impl --> :feature:cats:api
+  :feature:cats:impl --> :core:database
+  :feature:cats:impl --> :core:dispatchers
+  :feature:cats:impl --> :core:network
 
 classDef kotlin-multiplatform fill:#C792EA,stroke:#fff,stroke-width:2px,color:#fff;
 classDef android-application fill:#2C4162,stroke:#fff,stroke-width:2px,color:#fff;
+class :feature:dogs:api kotlin-multiplatform
+class :common:utils kotlin-multiplatform
 class :core:database kotlin-multiplatform
 class :common:logger kotlin-multiplatform
 class :core:dispatchers kotlin-multiplatform
 class :feature:home:impl kotlin-multiplatform
-class :common:utils kotlin-multiplatform
 class :core:network kotlin-multiplatform
 class :feature:cats:api kotlin-multiplatform
-class :feature:dogs:api kotlin-multiplatform
 class :feature:home:api kotlin-multiplatform
-class :data:cats kotlin-multiplatform
-class :domain:cats kotlin-multiplatform
 class :app android-application
 class :core:ui kotlin-multiplatform
-class :data:dogs kotlin-multiplatform
-class :domain:dogs kotlin-multiplatform
 class :feature:cats:impl kotlin-multiplatform
 class :feature:dogs:impl kotlin-multiplatform
 
